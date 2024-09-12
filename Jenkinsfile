@@ -29,7 +29,9 @@ pipeline {
         stage('Build') {
             steps {
                 container('maven') {
-                    sh 'mvn package -DskipTests'
+                    sh 'mvn clean package -DskipTests=true'
+					archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: false
+					stash includes: 'target/*.jar', name: 'buildJar'
                 }
             }
         }
