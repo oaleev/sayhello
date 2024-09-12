@@ -8,6 +8,7 @@ pipeline {
 				}
 			}
 			steps {
+				deleteDir()
          			sh "mvn clean package -DskipTests=true"
 					archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: false
 					stash includes: 'target/*.jar', name: 'buildJar'
