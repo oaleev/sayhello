@@ -8,22 +8,10 @@ pipeline {
 		CONFIG_FOLDER = "${env.WORKSPACE}/config"
 	}
   	stages {
-		
-		stage('Git Checkout') {
-			agent {
-				docker {
-					image 'manrala/all_in_one:v3'
-				}
-			}
-			steps {
-         			sh "git branch: 'main', credentialsId: 'GitOps', url: 'https://github.com/oaleev/sayhello.git'"
-			}
-    	}
     	stage('Build Artifact - Maven.') {
 			agent {
 				docker {
-					image 'maven:3.9.9-eclipse-temurin-21-alpine'
-					args '-u root'
+					image 'manrala/all_in_one:v3'
 				}
 			}
 			steps {
