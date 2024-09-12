@@ -1,18 +1,18 @@
 pipeline {
 	agent any
 
-	// environment {
-	// 	DOCKER_REPO = 'manrala/wishme'
-    //     CONFIG_REPO_URL = "https://github.com/oaleev/wishme_config.git"
-	// 	CONFIG_ORG = 'oaleev/wishme.git'
-	// 	CONFIG_FOLDER = "${env.WORKSPACE}/config"
-	// }
+	environment {
+		DOCKER_REPO = 'manrala/sayhello'
+        CONFIG_REPO_URL = "https://github.com/oaleev/sayhello_config.git"
+		CONFIG_ORG = 'oaleev/sayhello.git'
+		CONFIG_FOLDER = "${env.WORKSPACE}/config"
+	}
   	stages {
     	stage('Build Artifact - Maven.') {
 			agent {
 				docker {
 					image 'manrala/all_in_one:v2'
-					args '-u root'
+					args '-v /root/.m2:/root/.m2'
 				}
 			}
 			steps {
@@ -25,7 +25,7 @@ pipeline {
 			agent {
 				docker {
 					image 'manrala/all_in_one:v2'
-					args '-u root'
+					args '-v /root/.m2:/root/.m2'
 				}
 			}
 			steps {
@@ -42,7 +42,7 @@ pipeline {
 			agent {
 				docker {
 					image 'manrala/all_in_one:v2'
-					args '-u root'
+					args '-v /root/.m2:/root/.m2'
 				}
 			}
 			steps {
@@ -58,7 +58,7 @@ pipeline {
 		// 	agent {
 		// 		docker {
 		// 			'image 'manrala/all_in_one:v2'
-		// 			args '-u root'
+		// 			args '-v /root/.m2:/root/.m2'
 		// 		}
 		// 	}
 		// 	steps {
