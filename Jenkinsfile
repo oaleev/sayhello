@@ -11,8 +11,8 @@ pipeline {
     	stage('Build Artifact - Maven.') {
 			agent {
 				docker {
-					image 'manrala/all_in_one:v1'
-					args '-v /root/.m2:/root/.m2'
+					image 'maven:3.9.9-eclipse-temurin-21-alpine'
+					// args '-v /root/.m2:/root/.m2'
 				}
 			}
 			steps {
@@ -24,8 +24,8 @@ pipeline {
 		stage('Unit Test - Maven') {
 			agent {
 				docker {
-					image 'manrala/all_in_one:v1'
-					args '-v /root/.m2:/root/.m2'
+					image 'maven:3.9.9-eclipse-temurin-21-alpine'
+					// args '-v /root/.m2:/root/.m2'
 				}
 			}
 			steps {
@@ -41,8 +41,8 @@ pipeline {
 		stage('Mutation - Test') {
 			agent {
 				docker {
-					image 'manrala/all_in_one:v1'
-					args '-v /root/.m2:/root/.m2'
+					image 'maven:3.9.9-eclipse-temurin-21-alpine'
+					// args '-v /root/.m2:/root/.m2'
 				}
 			}
 			steps {
@@ -57,8 +57,8 @@ pipeline {
 		// stage('Sonarqube - SAST.') {
 		// 	agent {
 		// 		docker {
-		// 			'image 'manrala/all_in_one:v1'
-		// 			args '-v /root/.m2:/root/.m2'
+		// 			'image 'maven:3.9.9-eclipse-temurin-21-alpine'
+					// args '-v /root/.m2:/root/.m2'
 		// 		}
 		// 	}
 		// 	steps {
