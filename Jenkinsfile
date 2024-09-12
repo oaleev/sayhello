@@ -12,7 +12,7 @@ pipeline {
 		stage('Git Checkout') {
 			agent {
 				docker {
-					image 'maven:3.9.9-eclipse-temurin-21-alpine'
+					image 'manrala/all_in_one:v3'
 				}
 			}
 			steps {
