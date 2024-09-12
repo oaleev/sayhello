@@ -1,26 +1,44 @@
 pipeline {
-	agent any
-  	stages {
-    	stage('Build Artifact - Maven.') {
-			agent {
-				docker {
-					image 'manrala/all_in_one:v3'
-					args '-v /root/.m2:/root/m2'
-				}
-			}
-			steps {
-				deleteDir()
-				sh 'apk add --no-cache git'
-				sh "mvn clean package -DskipTests=true"
-				archiveArtifacts artifacts: 'target/*.jar', allowEmptyArchive: false
-				stash includes: 'target/*.jar', name: 'buildJar'
-			}
-    	}
-		
+    agent {
+        kubernetes {
+            yaml '''
+                apiVersion: v1
+                kind: Pod
+                metadata:
+                  labels:
+                    component: ci
+                spec:
+                  containers:
+                  - name: maven
+                    image: manrala/all_in_one:v3
+                    command:
+                    - cat
+                    tty: true
+                //     volumeMounts:
+                //     - mountPath: "/root/.m2"
+                //       name: m2
+                //   volumes:
+                //   - name: m2
+                //     persistentVolumeClaim:
+                //       claimName: m2
+            '''
+            defaultContainer 'maven'
+        }
     }
-	post {
-		always {
-			cleanWs()
-		}
-	}
+    stages {
+        stage('Build') {
+            steps {
+                container('maven') {
+                    sh 'mvn package -DskipTests'
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                container('maven') {
+                    sh 'mvn test'
+                }
+            }
+        }
+    }
 }
