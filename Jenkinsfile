@@ -1,24 +1,13 @@
 pipeline {
 	agent any
 
-	environment {
-		DOCKER_REPO = 'manrala/wishme'
-        CONFIG_REPO_URL = "https://github.com/oaleev/wishme_config.git"
-		CONFIG_ORG = 'oaleev/wishme.git'
-		CONFIG_FOLDER = "${env.WORKSPACE}/config"
-	}
+	// environment {
+	// 	DOCKER_REPO = 'manrala/wishme'
+    //     CONFIG_REPO_URL = "https://github.com/oaleev/wishme_config.git"
+	// 	CONFIG_ORG = 'oaleev/wishme.git'
+	// 	CONFIG_FOLDER = "${env.WORKSPACE}/config"
+	// }
   	stages {
-		stage('CHeckout') {
-			agent {
-				docker {
-					image 'manrala/all_in_one:v2'
-					args '-u root'
-				}
-			}
-			steps {
-         			git branch: 'dev', credentialsId: 'github', url: 'https://github.com/oaleev/wishme.git'
-			}
-    	}
     	stage('Build Artifact - Maven.') {
 			agent {
 				docker {
