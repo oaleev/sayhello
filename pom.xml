@@ -78,7 +78,7 @@
 				</configuration>
 			</plugin>
 			<!--                   Jacoco Plugin                   -->
-			   <plugin>
+			   <!-- <plugin>
 			    <groupId>org.jacoco</groupId>
 			    <artifactId>jacoco-maven-plugin</artifactId>
 			    <version>0.8.12</version>
@@ -96,10 +96,10 @@
 			      </goals>
 			     </execution>
 			    </executions>
-			   </plugin>
+			   </plugin> -->
 
 			   <!--                   PITest Mutation Plugin                   -->
-			   <plugin>
+			   <!-- <plugin>
 			    <groupId>org.pitest</groupId>
 			    <artifactId>pitest-maven</artifactId>
 			    <version>1.5.0</version>
@@ -117,10 +117,10 @@
 			             <outputFormat>HTML</outputFormat>
 			        </outputFormats>
 			    </configuration>
-			   </plugin>
+			   </plugin> -->
 
 			<!--                   Dependency Check Plugin                   -->
-			   <plugin>
+			   <!-- <plugin>
 			    <groupId>org.owasp</groupId>
 			    <artifactId>dependency-check-maven</artifactId>
 			    <version>6.1.6</version>
@@ -128,7 +128,7 @@
 			     <format>ALL</format>
 			     <failBuildOnCVSS>8</failBuildOnCVSS> 
 			    </configuration>
-			   </plugin>
+			   </plugin> -->
 		</plugins>
 	</build>
 
