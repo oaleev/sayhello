@@ -136,7 +136,7 @@
 				</plugin>
 
 			   <!--                   PITest Mutation Plugin                   -->
-			   <!-- <plugin>
+			   <plugin>
 			    <groupId>org.pitest</groupId>
 			    <artifactId>pitest-maven</artifactId>
 			    <version>1.5.0</version>
@@ -154,7 +154,7 @@
 			             <outputFormat>HTML</outputFormat>
 			        </outputFormats>
 			    </configuration>
-			   </plugin> -->
+			   </plugin>
 
 			<!--                   Dependency Check Plugin                   -->
 			   <!-- <plugin>
