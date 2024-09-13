@@ -10,7 +10,7 @@ pipeline {
                 spec:
                   containers:
                   - name: maven
-                    image: manrala/all_in_one:v3
+                    image: manrala/all_in_one:v4
                     command:
                     - cat
                     tty: true
