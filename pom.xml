@@ -60,7 +60,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
+		<dependency>
+			<groupId>org.jacoco</groupId>
+			<artifactId>jacoco-maven-plugin</artifactId>
+			<version>0.8.12</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -78,7 +83,7 @@
 				</configuration>
 			</plugin>
 			<!--                   Jacoco Plugin                   -->
-			   <!-- <plugin>
+			   <plugin>
 			    <groupId>org.jacoco</groupId>
 			    <artifactId>jacoco-maven-plugin</artifactId>
 			    <version>0.8.12</version>
@@ -96,7 +101,7 @@
 			      </goals>
 			     </execution>
 			    </executions>
-			   </plugin> -->
+			   </plugin>
 
 			   <!--                   PITest Mutation Plugin                   -->
 			   <!-- <plugin>
