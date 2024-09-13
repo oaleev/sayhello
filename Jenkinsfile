@@ -25,6 +25,12 @@ pipeline {
             defaultContainer 'maven'
         }
     }
+	environment {
+		DOCKER_REPO = 'manrala/sayhello'
+        CONFIG_REPO_URL = "https://github.com/oaleev/sayhello_config.git"
+		CONFIG_ORG = 'oaleev/sayhello.git'
+		CONFIG_FOLDER = "${env.WORKSPACE}/config"
+	}
     stages {
         stage('Build') {
             steps {
@@ -48,13 +54,16 @@ pipeline {
 				}
 			}
         }
-		stage('Mutation - Test') {
+		stage('Build the Image and Push to repo...') {
 			steps {
-         			sh "mvn org.pitest:pitest-maven:mutationCoverage"
-			}
-			post {
-				always {
-					pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
+				 container('maven') {
+                    withDockerRegistry(credentialsId: 'docker', url: 'https://index.docker.io/v1/') {
+					sh """
+					ls -ls
+    				docker build -t ${DOCKER_REPO}:""$GIT_COMMIT"" .
+					docker push ${DOCKER_REPO}:""$GIT_COMMIT""
+					"""
+                	}
 				}
 			}
     	}
