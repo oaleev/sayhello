@@ -14,13 +14,13 @@ pipeline {
                     command:
                     - cat
                     tty: true
-                //     volumeMounts:
-                //     - mountPath: "/root/.m2"
-                //       name: m2
-                //   volumes:
-                //   - name: m2
-                //     persistentVolumeClaim:
-                //       claimName: m2
+                    volumeMounts:
+                    - mountPath: "/root/.m2"
+                      name: m2
+                  volumes:
+                  - name: m2
+                    persistentVolumeClaim:
+                      claimName: m2-pvc
             '''
             defaultContainer 'maven'
         }
