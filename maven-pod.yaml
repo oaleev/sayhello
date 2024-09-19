@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    some-label: maven-agent
+spec:
+  containers:
+  - name: maven
+    image: maven:3.6.3-jdk-8  # Maven with JDK 8
+    command:
+    - cat
+    tty: true
+    volumeMounts:
+    - name: maven-cache
+      mountPath: /root/.m2
+  volumes:
+  - name: maven-cache
+    emptyDir: {}
